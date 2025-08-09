@@ -24,7 +24,7 @@ public:
     }
     operator Rupees() {
         float totalDollar = dol + cent / 100.0;
-        float totalRupees = totalDollar * 84.50; // Example rate: 1 USD = 84.50 INR
+        float totalRupees = totalDollar * 140.0; 
         int r = (int)totalRupees;
         int p = (totalRupees - r) * 100;
         return Rupees(r, p);
