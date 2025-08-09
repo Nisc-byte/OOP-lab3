@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class Feet {
+public:
+    int ft;
+    int inch;
+    Feet(int f = 0, int i = 0) {
+        ft = f;
+        inch = i;
+    }
+};
+
+class Kilometer {
+    int km;
+    int m;
+public:
+    Kilometer(Feet f) {
+        float totalFeet = f.ft + f.inch / 12.0;
+        float totalKm = totalFeet / 328.0;
+        km = (int)totalKm;
+        m = (totalKm - km) * 1000;
+    }
+    void display() {
+        cout << km << " km " << m << " m" << endl;
+    }
+};
+
+int main() {
+    int ft, inch;
+    cout << "Enter feet and inches: ";
+    cin >> ft >> inch;
+    
+    Feet f1(ft, inch);
+    Kilometer k1 = f1; // conversion happens here
+    
+    cout << "Equivalent distance: ";
+    k1.display();
+    
+    return 0;
+}
