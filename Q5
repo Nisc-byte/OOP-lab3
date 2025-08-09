@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+class Height {
+    int meter;
+    int centimeter;
+public:
+    Height(int m = 0, int cm = 0) {
+        meter = m;
+        centimeter = cm;
+    }
+    friend Height operator+(const Height& h1, const Height& h2);
+    void display() {
+        cout << meter << " m " << centimeter << " cm" << endl;
+    }
+};
+
+Height operator+(const Height& h1, const Height& h2) {
+    Height temp;
+    temp.meter = h1.meter + h2.meter;
+    temp.centimeter = h1.centimeter + h2.centimeter;
+    if (temp.centimeter >= 100) {
+        temp.meter += temp.centimeter / 100;
+        temp.centimeter %= 100;
+    }
+    return temp;
+}
+
+int main() {
+    Height h1(5, 75), h2(3, 50);
+    Height h3 = h1 + h2;
+    h3.display();
+    return 0;
+}
