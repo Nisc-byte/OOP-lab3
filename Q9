@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+class Rupees {
+    int rs;
+    int paisa;
+public:
+    Rupees(int r = 0, int p = 0) {
+        rs = r;
+        paisa = p;
+    }
+    void display() {
+        cout << rs << " Rs " << paisa << " paisa" << endl;
+    }
+};
+
+class Dollar {
+    int dol;
+    int cent;
+public:
+    Dollar(int d = 0, int c = 0) {
+        dol = d;
+        cent = c;
+    }
+    operator Rupees() {
+        float totalDollar = dol + cent / 100.0;
+        float totalRupees = totalDollar * 84.50; // Example rate: 1 USD = 84.50 INR
+        int r = (int)totalRupees;
+        int p = (totalRupees - r) * 100;
+        return Rupees(r, p);
+    }
+};
+
+int main() {
+    int d, c;
+    cout << "Enter amount in dollars and cents: ";
+    cin >> d >> c;
+    
+    Dollar usd(d, c);
+    Rupees inr = usd; // Conversion happens here
+    
+    cout << "Equivalent in Rupees: ";
+    inr.display();
+    
+    return 0;
+}
